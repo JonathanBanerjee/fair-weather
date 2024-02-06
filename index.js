@@ -1,2 +1,2 @@
-import { getLocation } from "./getLocationController.js";
+import { getLocation } from "./Controllers/getLocationController.js";
 getLocation();
