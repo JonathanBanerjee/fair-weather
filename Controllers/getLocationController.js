@@ -12,6 +12,7 @@ export function getLocation() {
 
     function success({ coords }) {
       console.log("Location obtained", coords);
+      getApiData(coords);
       getLocation.classList.add("hidden");
     }
 
