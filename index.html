@@ -8,5 +8,25 @@
     <script type="module" src="./index.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body></body>
+  <body>
+    <div id="root">
+      <div id="controls">
+        <form action="">
+          <input
+            type="text"
+            class="location"
+            placeholder="Enter your location"
+            id="location"
+          />
+          <button>🔍</button>
+        </form>
+        <span class="or">Or</span>
+
+        <button type="button" class="getLocation" id="getLocation">
+          <img src="./Images/location.svg" alt="Locate Me" />
+          <span class="button-text">Locate Me</span>
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
