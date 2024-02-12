@@ -20,14 +20,23 @@ export async function getWeather(coords) {
         let mainWeather = i.weather[0].main;
         let weatherDesc = i.weather[0].description;
         let temperature = Math.round(i.main.temp - 273.15);
+        let weatherIcon = i.weather[0].icon;
 
         if (dateCheck === 12) {
-          console.log(date, dateCheck, mainWeather, weatherDesc);
+          console.log(
+            date,
+            dateCheck,
+            mainWeather,
+            weatherDesc,
+            temperature,
+            weatherIcon
+          );
           noonDates.push({
             date: date,
             weather: mainWeather,
-            weatherDesc: weatherDesc + "weatherDesc",
+            weatherDesc: weatherDesc,
             temperature,
+            weatherIcon,
           });
         }
       });

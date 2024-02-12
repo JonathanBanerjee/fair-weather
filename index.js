@@ -7,12 +7,15 @@ import {
 } from "./Controllers/sunController.js";
 import { getCity } from "./Controllers/getCityController.js";
 
-const coordsRef = document.getElementById("coords");
 const cityRef = document.getElementById("city");
-const weatherRef = document.getElementById("weather");
 const button = document.getElementById("getLocation");
 const sunriseRef = document.getElementById("sunrise");
 const sunsetRef = document.getElementById("sunset");
+const dayOneRef = document.getElementById("dayOne");
+const dayTwoRef = document.getElementById("dayTwo");
+const dayThreeRef = document.getElementById("dayThree");
+const dayFourRef = document.getElementById("dayFour");
+const dayFiveRef = document.getElementById("dayFive");
 
 button.addEventListener("click", () => clickHandler());
 
@@ -24,19 +27,42 @@ const clickHandler = async () => {
     const sunrise = await getSunrise(coords);
     const sunset = await getSunset(coords);
     const datetime = await getDatetime(sunrise, sunset);
+    const weatherURL = "https://openweathermap.org/img/wn/";
     cityRef.innerHTML = city;
     sunriseRef.innerHTML = "Sunrise: " + datetime.sunriseString + " AM";
     sunsetRef.innerHTML = "Sunset: " + datetime.sunsetString + " PM";
-    weatherRef.innerHTML =
+    dayOneRef.innerHTML =
       noonDates[0].weatherDesc +
       " " +
-      noonDates[1].weatherDesc +
+      noonDates[0].temperature +
+      "°C " +
       " " +
-      noonDates[2].weatherDesc +
+      `<img src="${weatherURL + noonDates[0].weatherIcon + "@2x.png"}"</img>`;
+
+    dayTwoRef.innerHTML =
+      noonDates[1].date.toString().slice(0, 4) +
       " " +
-      noonDates[3].weatherDesc +
-      " " +
-      noonDates[4].weatherDesc;
+      noonDates[1].temperature +
+      "°C " +
+      `<img src="${weatherURL + noonDates[1].weatherIcon + "@2x.png"}"</img>`;
+
+    dayThreeRef.innerHTML =
+      noonDates[2].date.toString().slice(0, 4) +
+      noonDates[2].temperature +
+      "°C " +
+      `<img src="${weatherURL + noonDates[2].weatherIcon + "@2x.png"}"</img>`;
+
+    dayFourRef.innerHTML =
+      noonDates[3].date.toString().slice(0, 4) +
+      noonDates[3].temperature +
+      "°C " +
+      `<img src="${weatherURL + noonDates[3].weatherIcon + "@2x.png"}"</img>`;
+
+    dayFiveRef.innerHTML =
+      noonDates[4].date.toString().slice(0, 4) +
+      noonDates[4].temperature +
+      "°C " +
+      `<img src="${weatherURL + noonDates[4].weatherIcon + "@2x.png"}"</img>`;
   } catch (error) {
     console.log("Reason:", error);
   }
