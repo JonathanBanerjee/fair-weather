@@ -11,13 +11,29 @@ const cityRef = document.getElementById("city");
 const button = document.getElementById("getLocation");
 const sunriseRef = document.getElementById("sunrise");
 const sunsetRef = document.getElementById("sunset");
-const dayOneRef = document.getElementById("dayOne");
-const dayTwoRef = document.getElementById("dayTwo");
-const dayThreeRef = document.getElementById("dayThree");
-const dayFourRef = document.getElementById("dayFour");
-const dayFiveRef = document.getElementById("dayFive");
 
-button.addEventListener("click", () => clickHandler());
+const dayRefs = [
+  document.getElementById("dayOne"),
+  document.getElementById("dayTwo"),
+  document.getElementById("dayThree"),
+  document.getElementById("dayFour"),
+  document.getElementById("dayFive"),
+];
+
+const generateHTML = (dayInfo, weatherURL, firstDay) => {
+  if (firstDay) {
+    return `
+    ${dayInfo.weatherDesc} 
+    ${dayInfo.temperature}°C 
+    <img src="${weatherURL + dayInfo.weatherIcon + "@2x.png"}" />
+  `;
+  } else {
+    return `
+    ${dayInfo.date.toString().slice(0, 4)}
+    ${dayInfo.temperature}°C 
+    <img src="${weatherURL + dayInfo.weatherIcon + "@2x.png"}" /> `;
+  }
+};
 
 const clickHandler = async () => {
   try {
@@ -31,39 +47,15 @@ const clickHandler = async () => {
     cityRef.innerHTML = city;
     sunriseRef.innerHTML = "Sunrise: " + datetime.sunriseString + " AM";
     sunsetRef.innerHTML = "Sunset: " + datetime.sunsetString + " PM";
-    dayOneRef.innerHTML =
-      noonDates[0].weatherDesc +
-      " " +
-      noonDates[0].temperature +
-      "°C " +
-      " " +
-      `<img src="${weatherURL + noonDates[0].weatherIcon + "@2x.png"}"</img>`;
 
-    dayTwoRef.innerHTML =
-      noonDates[1].date.toString().slice(0, 4) +
-      " " +
-      noonDates[1].temperature +
-      "°C " +
-      `<img src="${weatherURL + noonDates[1].weatherIcon + "@2x.png"}"</img>`;
-
-    dayThreeRef.innerHTML =
-      noonDates[2].date.toString().slice(0, 4) +
-      noonDates[2].temperature +
-      "°C " +
-      `<img src="${weatherURL + noonDates[2].weatherIcon + "@2x.png"}"</img>`;
-
-    dayFourRef.innerHTML =
-      noonDates[3].date.toString().slice(0, 4) +
-      noonDates[3].temperature +
-      "°C " +
-      `<img src="${weatherURL + noonDates[3].weatherIcon + "@2x.png"}"</img>`;
-
-    dayFiveRef.innerHTML =
-      noonDates[4].date.toString().slice(0, 4) +
-      noonDates[4].temperature +
-      "°C " +
-      `<img src="${weatherURL + noonDates[4].weatherIcon + "@2x.png"}"</img>`;
+    noonDates.forEach((dayInfo, i) => {
+      const dayRef = dayRefs[i];
+      const firstDay = i === 0;
+      dayRef.innerHTML = generateHTML(dayInfo, weatherURL, firstDay);
+    });
   } catch (error) {
     console.log("Reason:", error);
   }
 };
+
+button.addEventListener("click", clickHandler);
