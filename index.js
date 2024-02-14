@@ -1,3 +1,4 @@
+// Importing functions from the controllers
 import { getLocation } from "./Controllers/getLocationController.js";
 import { getWeather } from "./Controllers/weatherController.js";
 import {
@@ -7,11 +8,11 @@ import {
 } from "./Controllers/sunController.js";
 import { getCity } from "./Controllers/getCityController.js";
 
+//Obtaining DOM references and assigning them to a variable.
 const cityRef = document.getElementById("city");
 const button = document.getElementById("getLocation");
 const sunriseRef = document.getElementById("sunrise");
 const sunsetRef = document.getElementById("sunset");
-
 const dayRefs = [
   document.getElementById("dayOne"),
   document.getElementById("dayTwo"),
@@ -20,21 +21,16 @@ const dayRefs = [
   document.getElementById("dayFive"),
 ];
 
-const generateHTML = (dayInfo, weatherURL, firstDay) => {
-  if (firstDay) {
-    return `
-    ${dayInfo.weatherDesc} 
-    ${dayInfo.temperature}°C 
-    <img src="${weatherURL + dayInfo.weatherIcon + "@2x.png"}" />
-  `;
-  } else {
-    return `
-    ${dayInfo.date.toString().slice(0, 4)}
-    ${dayInfo.temperature}°C 
+// Function to generate HTML for weather display
+const generateWeatherHTML = (dayInfo, weatherURL, firstDay) => {
+  const day = firstDay
+    ? dayInfo.weatherDesc
+    : dayInfo.date.toString().slice(0, 4);
+  return `${day} ${dayInfo.temperature}°C 
     <img src="${weatherURL + dayInfo.weatherIcon + "@2x.png"}" /> `;
-  }
 };
 
+// Click event handler for the button
 const clickHandler = async () => {
   try {
     const coords = await getLocation();
@@ -48,10 +44,11 @@ const clickHandler = async () => {
     sunriseRef.innerHTML = "Sunrise: " + datetime.sunriseString + " AM";
     sunsetRef.innerHTML = "Sunset: " + datetime.sunsetString + " PM";
 
+    // Update weather information for each day
     noonDates.forEach((dayInfo, i) => {
       const dayRef = dayRefs[i];
       const firstDay = i === 0;
-      dayRef.innerHTML = generateHTML(dayInfo, weatherURL, firstDay);
+      dayRef.innerHTML = generateWeatherHTML(dayInfo, weatherURL, firstDay);
     });
   } catch (error) {
     console.log("Reason:", error);
