@@ -68,8 +68,54 @@ input {
 }
 
 .dayOne {
-  background-color: #fcf2cf;
+  background-color: green;
   border-radius: 20px;
   text-align: center;
   border: 2px solid #beb47f;
+  width: 90%;
+  margin: 0 auto;
+  height: 220px;
+  position: relative;
+}
+
+.dayOne img {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dayOne p {
+  margin-top: 100px;
+}
+
+.day {
+  background-color: blueviolet;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid #beb47f;
+  width: 14%;
+  margin: 25px 5%;
+  height: 220px;
+  float: left;
+}
+
+.city {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+@media screen and (max-width: 400px) {
+  .day {
+    width: 90%;
+    margin: 2% auto;
+    float: none;
+  }
+}
+.suncontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }/*# sourceMappingURL=styles.css.map */
