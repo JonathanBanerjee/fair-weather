@@ -7,12 +7,14 @@ import {
   getDatetime,
 } from "./Controllers/sunController.js";
 import { getCity } from "./Controllers/getCityController.js";
+import { inputHandler } from "./Controllers/searchLocationController.js";
 
 //Obtaining DOM references and assigning them to a variable.
 const cityRef = document.getElementById("city");
 const button = document.getElementById("getLocation");
 const sunriseRef = document.getElementById("sunrise");
 const sunsetRef = document.getElementById("sunset");
+const input = document.getElementById("location");
 const dayRefs = [
   document.getElementById("dayOne"),
   document.getElementById("dayTwo"),
@@ -55,4 +57,6 @@ const clickHandler = async () => {
   }
 };
 
+//Event Listeners
+input.addEventListener("input", (e) => inputHandler(e.target.value));
 button.addEventListener("click", clickHandler);
