@@ -1,4 +1,14 @@
 import { API_KEY, API_URL } from "../config.js";
+import { generateWeatherHTML } from "../index.js";
+
+const dayRefs = [
+  document.getElementById("dayOne"),
+  document.getElementById("dayTwo"),
+  document.getElementById("dayThree"),
+  document.getElementById("dayFour"),
+  document.getElementById("dayFive"),
+];
+const weatherURL = "https://openweathermap.org/img/wn/";
 
 export async function getWeather(coords) {
   try {
@@ -7,11 +17,6 @@ export async function getWeather(coords) {
     );
 
     if (data) {
-      // console.log(data.list[2].weather);
-      // console.log(data.list[2].weather[0].description);
-      // console.log(data.list[8].weather);
-      // console.log(data.list[8].weather[0].description);
-      // return data.list.weather;
       const noonDates = [];
       data.list.forEach((i) => {
         const reading = i.dt * 1000;
@@ -40,7 +45,12 @@ export async function getWeather(coords) {
           });
         }
       });
-      return noonDates;
+      // return noonDates;
+      noonDates.forEach((dayInfo, i) => {
+        const dayRef = dayRefs[i];
+        const firstDay = i === 0;
+        dayRef.innerHTML = generateWeatherHTML(dayInfo, weatherURL, firstDay);
+      });
     }
   } catch (error) {
     console.error(error);

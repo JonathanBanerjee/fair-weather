@@ -24,7 +24,7 @@ const dayRefs = [
 ];
 
 // Function to generate HTML for weather display
-const generateWeatherHTML = (dayInfo, weatherURL, firstDay) => {
+export const generateWeatherHTML = (dayInfo, weatherURL, firstDay) => {
   const day = firstDay
     ? dayInfo.weatherDesc.charAt(0).toUpperCase() + dayInfo.weatherDesc.slice(1)
     : dayInfo.date.toString().slice(0, 4);
