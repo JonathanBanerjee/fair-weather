@@ -1,15 +1,18 @@
 import { API_KEY } from "../config.js";
 import { getWeather } from "./weatherController.js";
+import { getCity } from "./getCityController.js";
 
 const cityList = document.getElementById("city-list");
-export const inputHandler = async (userInput) => {
-  console.log(userInput);
+const getLocationButton = document.getElementById("getLocation");
+const getOr = document.getElementById("or");
+const city = document.getElementById("city");
 
+// Function to handle the user's input when searching for a city
+export const inputHandler = async (userInput) => {
   try {
     const { data } = await axios.get(
       `http://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`
     );
-    console.log(data);
 
     const list = data.map(
       (item) =>
@@ -24,15 +27,19 @@ export const inputHandler = async (userInput) => {
   }
 };
 
-cityList.addEventListener("click", function (e) {
+// Event listener for when an item from the list of cities if clicked
+cityList.addEventListener("click", async function (e) {
   if (e.target.tagName.toLowerCase() === "li") {
     const latitude = e.target.getAttribute("data-lat");
     const longitude = e.target.getAttribute("data-lon");
 
     getWeather({ latitude, longitude });
+    const cityName = await getCity({ latitude, longitude });
     cityList.innerHTML = "";
+    city.innerHTML = cityName;
 
-    //Placeholder of what I have to do with regards to hiding and revealing
-    goLight.classList.remove("on");
+    getLocationButton.classList.remove("getLocation", "getOr");
+    getLocationButton.style.display = "none";
+    getOr.style.display = "none";
   }
 });
