@@ -60,3 +60,6 @@ const clickHandler = async () => {
 //Event Listeners
 input.addEventListener("input", (e) => inputHandler(e.target.value));
 button.addEventListener("click", clickHandler);
+document.getElementById("back-button").addEventListener("click", () => {
+  history.back();
+});
