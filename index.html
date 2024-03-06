@@ -37,23 +37,26 @@
           <div id="sunset" class="sun set"></div>
         </div>
 
-        <div id="weatherIcon"></div>
-        <form action="">
+        <div id="initialdisplay">
+          <div id="weatherIcon"></div>
           <input
             type="text"
             class="location"
             placeholder="Enter your location"
             id="location"
           />
-          <ul id="city-list"></ul>
-          <button>🔍</button>
-        </form>
-        <span class="or" id="or">Or</span>
+          <div id="list-wrapper">
+            <ul id="city-list"></ul>
+          </div>
+          <!-- <button id="search-button">🔍</button> -->
 
-        <button type="button" class="getLocation" id="getLocation">
-          <img src="./Images/location.svg" id="locateMe"" alt="Locate Me" />
-          <span class="button-text">Locate Me</span>
-        </button>
+          <span class="or" id="or">Or</span>
+
+          <button type="button" class="getLocation" id="getLocation">
+            <img src="./Images/location.svg" id="locateMe" alt="Locate Me" />
+            <span class="button-text">Locate Me</span>
+          </button>
+        </div>
       </div>
     </div>
   </body>

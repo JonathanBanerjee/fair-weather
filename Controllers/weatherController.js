@@ -11,11 +11,13 @@ const dayRefs = [
 const weatherURL = "https://openweathermap.org/img/wn/";
 
 export async function getWeather(coords) {
+  console.log("get weather ran", coords);
   try {
     const { data } = await axios.get(
       `${API_URL}/data/2.5/forecast?lat=${coords.latitude}&lon=${coords.longitude}&appid=${API_KEY}`
     );
 
+    console.log(data);
     if (data) {
       const noonDates = [];
       data.list.forEach((i) => {
@@ -28,14 +30,6 @@ export async function getWeather(coords) {
         let weatherIcon = i.weather[0].icon;
 
         if (dateCheck === 12) {
-          console.log(
-            date,
-            dateCheck,
-            mainWeather,
-            weatherDesc,
-            temperature,
-            weatherIcon
-          );
           noonDates.push({
             date: date,
             weather: mainWeather,
@@ -51,6 +45,7 @@ export async function getWeather(coords) {
         const firstDay = i === 0;
         dayRef.innerHTML = generateWeatherHTML(dayInfo, weatherURL, firstDay);
       });
+      return noonDates;
     }
   } catch (error) {
     console.error(error);

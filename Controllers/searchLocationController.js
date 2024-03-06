@@ -3,12 +3,17 @@ import { getWeather } from "./weatherController.js";
 import { getCity } from "./getCityController.js";
 
 const cityList = document.getElementById("city-list");
-const getLocationButton = document.getElementById("getLocation");
-const getOr = document.getElementById("or");
 const city = document.getElementById("city");
+
+const input = document.getElementById("location");
+const dayList = document.getElementById("daylist");
+const backButton = document.getElementById("back-button");
+const searchButton = document.getElementById("search-button");
+const initialDisplay = document.getElementById("initialdisplay");
 
 // Function to handle the user's input when searching for a city
 export const inputHandler = async (userInput) => {
+  console.log("Input handler ran");
   try {
     const { data } = await axios.get(
       `http://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`
@@ -27,19 +32,20 @@ export const inputHandler = async (userInput) => {
   }
 };
 
-// Event listener for when an item from the list of cities if clicked
+// Event listener for when an item from the list of cities is clicked
 cityList.addEventListener("click", async function (e) {
   if (e.target.tagName.toLowerCase() === "li") {
     const latitude = e.target.getAttribute("data-lat");
     const longitude = e.target.getAttribute("data-lon");
 
-    getWeather({ latitude, longitude });
+    const coords = { latitude, longitude };
+
+    getWeather(coords);
     const cityName = await getCity({ latitude, longitude });
     cityList.innerHTML = "";
     city.innerHTML = cityName;
-
-    getLocationButton.classList.remove("getLocation", "getOr");
-    getLocationButton.style.display = "none";
-    getOr.style.display = "none";
+    dayList.style.display = "block";
+    backButton.style.display = "block";
+    initialDisplay.style.display = "none";
   }
 });

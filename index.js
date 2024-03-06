@@ -15,6 +15,10 @@ const button = document.getElementById("getLocation");
 const sunriseRef = document.getElementById("sunrise");
 const sunsetRef = document.getElementById("sunset");
 const input = document.getElementById("location");
+const dayList = document.getElementById("daylist");
+const backButton = document.getElementById("back-button");
+const searchButton = document.getElementById("search-button");
+const initialDisplay = document.getElementById("initialdisplay");
 const dayRefs = [
   document.getElementById("dayOne"),
   document.getElementById("dayTwo"),
@@ -46,11 +50,17 @@ const clickHandler = async () => {
     sunriseRef.innerHTML = "Sunrise: " + datetime.sunriseString + " AM";
     sunsetRef.innerHTML = "Sunset: " + datetime.sunsetString + " PM";
 
+    console.log(noonDates);
     // Update weather information for each day
     noonDates.forEach((dayInfo, i) => {
       const dayRef = dayRefs[i];
       const firstDay = i === 0;
       dayRef.innerHTML = generateWeatherHTML(dayInfo, weatherURL, firstDay);
+
+      // Displaying and hiding HTML elements
+      dayList.style.display = "block";
+      backButton.style.display = "block";
+      initialDisplay.style.display = "none";
     });
   } catch (error) {
     console.log("Reason:", error);
@@ -61,5 +71,6 @@ const clickHandler = async () => {
 input.addEventListener("input", (e) => inputHandler(e.target.value));
 button.addEventListener("click", clickHandler);
 document.getElementById("back-button").addEventListener("click", () => {
-  history.back();
+  location.reload();
 });
+// searchButton.addEventListener("click", () => inputHandler(input.value));

@@ -116,17 +116,42 @@ input {
   }
 }
 
-.suncontainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+#daylist {
+  display: none;
 }
 
-// .back-button {
-//   height: 100px;
-//   width: 100px;
-//   background-color: blue;
-//   border-radius: 20px;
-//   text-align: center;
-//   border: 2px solid #beb47f;
+// .suncontainer {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
 // }
+
+#city-list {
+  position: absolute;
+  background-color: blanchedalmond;
+  margin: 0;
+  padding: 0;
+  left: calc(50% - 150px);
+  // right: 0;
+  width: 300px;
+  text-align: center;
+}
+
+#city-list > li {
+  list-style: none;
+  border-bottom: blue solid 2px;
+}
+
+// #list-wrapper {
+//   position: relative;
+//   margin: 0 auto;
+//   background-color: aquamarine;
+//   position: absolute;
+//   top: 20px;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
+
+#back-button {
+  display: none;
+}

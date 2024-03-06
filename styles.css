@@ -114,8 +114,25 @@ input {
     float: none;
   }
 }
-.suncontainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+#daylist {
+  display: none;
+}
+
+#city-list {
+  position: absolute;
+  background-color: blanchedalmond;
+  margin: 0;
+  padding: 0;
+  left: calc(50% - 150px);
+  width: 300px;
+  text-align: center;
+}
+
+#city-list > li {
+  list-style: none;
+  border-bottom: blue solid 2px;
+}
+
+#back-button {
+  display: none;
 }/*# sourceMappingURL=styles.css.map */
