@@ -4,11 +4,8 @@ import { getCity } from "./getCityController.js";
 
 const cityList = document.getElementById("city-list");
 const city = document.getElementById("city");
-
-const input = document.getElementById("location");
 const dayList = document.getElementById("daylist");
 const backButton = document.getElementById("back-button");
-const searchButton = document.getElementById("search-button");
 const initialDisplay = document.getElementById("initialdisplay");
 
 // Function to handle the user's input when searching for a city

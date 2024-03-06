@@ -73,4 +73,3 @@ button.addEventListener("click", clickHandler);
 document.getElementById("back-button").addEventListener("click", () => {
   location.reload();
 });
-// searchButton.addEventListener("click", () => inputHandler(input.value));
