@@ -17,7 +17,6 @@ const sunsetRef = document.getElementById("sunset");
 const input = document.getElementById("location");
 const dayList = document.getElementById("daylist");
 const backButton = document.getElementById("back-button");
-const searchButton = document.getElementById("search-button");
 const initialDisplay = document.getElementById("initialdisplay");
 const dayRefs = [
   document.getElementById("dayOne"),

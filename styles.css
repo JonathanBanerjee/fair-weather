@@ -57,7 +57,7 @@ input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
+  margin-top: 9%;
   padding: 5px;
 }
 
@@ -68,11 +68,11 @@ input {
 }
 
 .dayOne {
-  background-color: green;
+  background-color: #fef2cb;
   border-radius: 20px;
   text-align: center;
-  border: 2px solid #beb47f;
-  width: 90%;
+  border: 2px solid #e7dd8b;
+  width: 85%;
   margin: 0 auto;
   height: 220px;
   position: relative;
@@ -85,19 +85,21 @@ input {
   transform: translateX(-50%);
 }
 
-.dayOne p {
-  margin-top: 100px;
-}
-
 .day {
-  background-color: blueviolet;
+  background-color: #dae8fc;
   border-radius: 20px;
   text-align: center;
-  border: 2px solid #beb47f;
+  border: 2px solid #7687b7;
   width: 14%;
-  margin: 25px 5%;
+  margin: 20px 5%;
   height: 220px;
   float: left;
+  position: relative;
+}
+
+.day img {
+  display: block;
+  margin: 40px auto 0;
 }
 
 .city {
@@ -107,7 +109,7 @@ input {
   font-family: "Times New Roman", Times, serif;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 600px) {
   .day {
     width: 90%;
     margin: 2% auto;
@@ -118,19 +120,40 @@ input {
   display: none;
 }
 
+.suncontainer {
+  display: flex;
+  justify-content: space-between;
+  display: flex;
+  position: absolute;
+  top: 40%;
+  left: 8%;
+  right: 8%;
+  transform: translateY(-50%);
+  padding: 0 20px;
+}
+
 #city-list {
   position: absolute;
-  background-color: blanchedalmond;
+  color: #0d0d0d;
+  background-color: burlywood;
   margin: 0;
   padding: 0;
   left: calc(50% - 150px);
+  right: 0;
   width: 300px;
   text-align: center;
+  border-radius: 10px;
 }
 
 #city-list > li {
   list-style: none;
-  border-bottom: blue solid 2px;
+  border-bottom: #020826 solid 2px;
+}
+
+.location {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #back-button {

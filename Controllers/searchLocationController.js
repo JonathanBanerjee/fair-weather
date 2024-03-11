@@ -1,12 +1,15 @@
 import { API_KEY } from "../config.js";
 import { getWeather } from "./weatherController.js";
 import { getCity } from "./getCityController.js";
+import { getSunrise, getSunset, getDatetime } from "./sunController.js";
 
 const cityList = document.getElementById("city-list");
 const city = document.getElementById("city");
 const dayList = document.getElementById("daylist");
 const backButton = document.getElementById("back-button");
 const initialDisplay = document.getElementById("initialdisplay");
+const sunriseRef = document.getElementById("sunrise");
+const sunsetRef = document.getElementById("sunset");
 
 // Function to handle the user's input when searching for a city
 export const inputHandler = async (userInput) => {
@@ -22,6 +25,7 @@ export const inputHandler = async (userInput) => {
           item.name + ", " + item.state + ", " + item.country
         } </li>`
     );
+
     const joinedList = list.join("");
     cityList.innerHTML = joinedList;
   } catch (error) {
@@ -36,6 +40,9 @@ cityList.addEventListener("click", async function (e) {
     const longitude = e.target.getAttribute("data-lon");
 
     const coords = { latitude, longitude };
+    const sunrise = await getSunrise(coords);
+    const sunset = await getSunset(coords);
+    const datetime = await getDatetime(sunrise, sunset);
 
     getWeather(coords);
     const cityName = await getCity({ latitude, longitude });
@@ -44,5 +51,7 @@ cityList.addEventListener("click", async function (e) {
     dayList.style.display = "block";
     backButton.style.display = "block";
     initialDisplay.style.display = "none";
+    sunriseRef.innerHTML = "Sunrise: " + datetime.sunriseString + " AM";
+    sunsetRef.innerHTML = "Sunset: " + datetime.sunsetString + " PM";
   }
 });
