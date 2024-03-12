@@ -127,16 +127,17 @@ input {
   justify-content: space-between;
   display: flex;
   position: absolute;
-  bottom: 5%;
+  // bottom: 5%;
+  top: 36%;
   left: 8%;
   right: 8%;
   transform: translateY(-50%);
   padding: 0 20px;
 }
 
-#controls {
-  position: relative;
-}
+// #controls {
+//   position: relative;
+// }
 
 #city-list {
   position: absolute;
