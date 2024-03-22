@@ -22,7 +22,7 @@ export const inputHandler = async (userInput) => {
     const list = data.map(
       (item) =>
         `<li data-lon="${item.lon}" data-lat="${item.lat}">${
-          item.name + ", " + item.state + ", " + item.country
+          item.name + ", " + item.state ? item.state : "" + ", " + item.country
         } </li>`
     );
 
