@@ -16,7 +16,7 @@ export const inputHandler = async (userInput) => {
   console.log("Input handler ran");
   try {
     const { data } = await axios.get(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`
     );
 
     const list = data.map(
