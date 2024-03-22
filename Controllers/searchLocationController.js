@@ -19,11 +19,17 @@ export const inputHandler = async (userInput) => {
       `https://api.openweathermap.org/geo/1.0/direct?q=${userInput}&limit=5&appid=${API_KEY}`
     );
 
+    // const list = data.map(
+    //   (item) =>
+    //     `<li data-lon="${item.lon}" data-lat="${item.lat}">${
+    //       item.name + `, ` + item.state ? item.state : `` + `, ` + item.country
+    //     } </li>`
+    // );
     const list = data.map(
       (item) =>
-        `<li data-lon="${item.lon}" data-lat="${item.lat}">${
-          item.name + `, ` + item.state ? item.state : `` + `, ` + item.country
-        } </li>`
+        `<li data-lon="${item.lon}" data-lat="${item.lat}">
+        ${item.name}, ${item.state ? item.state : ``}, ${item.country}
+        </li>`
     );
 
     const joinedList = list.join("");
